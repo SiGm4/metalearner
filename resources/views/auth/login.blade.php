@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('main')
+
+@section('title', '| Login')
 
 @section('content')
 <div class="container">
@@ -55,9 +57,6 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
                             </div>
                         </div>
                     </form>
