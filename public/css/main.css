@@ -25,3 +25,8 @@ body{
 .footer p{
     margin-bottom: 0px;
 }
+
+#logoutBtn{
+    padding: 3px 20px;
+    color:#333;
+}
