@@ -10,6 +10,7 @@
             <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
             <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
             <li class="{{ Request::is('posts') ? 'active' : '' }}"><a href="/posts">Posts</a></li>
+            <li class="{{ Request::is('blog') ? 'active' : '' }}"><a href="/blog">Blog</a></li>
         </ul>
 
         @auth
