@@ -12,7 +12,7 @@
     <div class="col-md-8 col-md-offset-2"> 
         <h1>Edit Post</h1> 
         <hr> 
-        <form method="POST" action="{{ route('posts.update', $post->id) }}"> 
+        <form method="POST" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data"> 
             <div class="form-group"> 
                 <label name="title">Title:</label> 
                 <input id="title" name="title" class="form-control" maxlength='255' required value="{{ $post->title }}"> 
@@ -42,6 +42,11 @@
                     @endforeach
                 </select>
             </div>    
+
+            <div class="form-group"> 
+                <label name="featured_image">Update Featured Image:</label> 
+                <input id="featured_image" name="featured_image" type="file"> 
+            </div> 
 
             <div class="form-group"> 
                 <label name="body">Post Body:</label> 

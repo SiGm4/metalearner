@@ -14,6 +14,11 @@ body{
     display:inline-block;
 }
 
+.featured_image{
+    width:100%;
+    height:auto;
+}
+
 .footer {
     display:none;
     position: absolute;

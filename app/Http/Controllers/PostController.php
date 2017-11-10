@@ -9,6 +9,8 @@ use App\User;
 use App\Category;
 use App\Tag;
 use Session;
+use Image;
+use Storage;
 
 class PostController extends Controller
 {
@@ -61,6 +63,7 @@ class PostController extends Controller
             'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required',
             'user_id' => 'required|integer',
+            'featured_image' => 'sometimes|image'
         ));
         
         $post = new Post;
@@ -71,6 +74,15 @@ class PostController extends Controller
         $post->body  = $request->body;
 
         $post->author()->associate($author);
+
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . "." . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800,400)->save($location);
+
+            $post->image = $filename;
+        }
 
         $post->save();
         
@@ -129,7 +141,8 @@ class PostController extends Controller
         $request->validate(array(
             'title' => 'required|min:5|max:255',
             'slug'  => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
-            'body' => 'required'
+            'body' => 'required',
+            'featured_image' => 'image'
         ));
         
         $post = Post::find($id);
@@ -137,6 +150,19 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug  = $request->slug;
         $post->body  = $request->body;
+        
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time() . "." . $image->getClientOriginalExtension();
+            $location = public_path('images/' . $filename);
+            Image::make($image)->resize(800,400)->save($location);
+            
+            $oldFilename = $post->image;
+
+            $post->image = $filename;
+
+            Storage::delete($oldFilename);
+        }
 
         $post->save();
 
@@ -169,6 +195,7 @@ class PostController extends Controller
 
         $post->categories()->detach();
         $post->tags()->detach();
+        Storage::delete($post->image);
 
         $post->delete();
 
