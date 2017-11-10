@@ -7,7 +7,7 @@
     <div class="col-md-8">
         <img src="{{ asset('images/'.$post->image) }}" alt="Post Featured Image" class="featured_image"></img>
         <h1>{{ $post->title }}</h1>
-        <h4><a href="/posts/{{ $post->id }}">Change Me: {{ url('/blog')."/".$post->slug }} </a></h4>
+        <h4><a href="/blog/{{ $post->slug }}">{{ url('/blog')."/".$post->slug }} </a></h4>
         <p class="lead">{!! $post->body !!}</p>
         <hr>
         <div class="tags">

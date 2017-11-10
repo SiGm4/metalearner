@@ -4,6 +4,8 @@
 <body>
     @include('partials._nav')
 
+    @yield('header')
+    
     <!-- main-content -->
     <div class="container">
 

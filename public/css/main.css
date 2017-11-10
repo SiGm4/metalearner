@@ -2,6 +2,43 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
+.navbar-custom{
+    height: 80px;
+    border-radius:0;
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px rgba(0,0,0,.14),0 1px 10px rgba(0,0,0,.12);
+}
+
+.navbar-nav>li>a{
+    height:100%;
+    padding:30px 20px;
+    font-size:18px;
+    color:white;
+}
+
+.navbar-nav a:hover{
+    background-color: rgba(244,81,30,0.4) !important;
+}
+
+.navbar-nav a:active,.navbar-nav a:focus{
+    background-color: rgba(244,81,30,0.6) !important;
+}
+
+.navbar-nav li.active{
+    background-color: rgba(244,81,30,0.5) !important;
+}
+
+.navbar-brand{
+    height:80px;
+}
+
+.header-img{
+    width:100%;
+    height:auto;
+    margin-bottom:40px;
+    margin-top:-22px;
+}
+
 .btn-h1-spacing{
     margin-top:22px;
 }

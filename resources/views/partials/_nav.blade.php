@@ -1,11 +1,11 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-custom">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">
-                MetaLearner
+                <img src="{{ asset('img/logo-white.png') }}" alt="Meta Learner Logo"></img>
             </a>
         </div>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav @guest navbar-right @endguest">
             <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
             <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
             <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
