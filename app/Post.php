@@ -18,9 +18,27 @@ class Post extends Model
         
     }
 
+    public function categoryIds(){
+        
+        return $this->categories->pluck('id');
+        
+    }
+
+    public function categoryNames(){
+        
+        return $this->categories->pluck('name');
+        
+    }
+
     public function tags(){
         
         return $this->belongsToMany('App\Tag','post_tag','post_id','tag_id');
+        
+    }
+
+    public function tagsIds(){
+        
+        return $this->tags->pluck('id');
         
     }
 

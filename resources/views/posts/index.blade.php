@@ -24,6 +24,7 @@
                     <th>Slug</th>
                     <th>Body</th>
                     <th>Author</th>
+                    <th>Categories</th>
                     <th>Created</th>
                     <th>Actions</th>
                 </thead>
@@ -41,9 +42,12 @@
                                 {{ strlen(strip_tags($post->body)) > 50 ? "..." : "" }}
                             </td>
                             <td>{{ $post->author->name }}</td>
+                            <td>
+                                {{ join('/',$post->categoryNames()->all()) }}                                 
+                            </td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>
-                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-block">Edit</a>
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-block">Edit</a>                             
                             </td>
                         </tr>
 

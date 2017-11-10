@@ -21,3 +21,5 @@ Route::post('/logout','Auth\LoginController@logout')->name('logout');
 
 
 Route::resource('posts', 'PostController');
+Route::resource('categories', 'CategoryController', ['except' => 'create']);
+Route::resource('tags', 'TagController', ['except' => 'create']);

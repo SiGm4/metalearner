@@ -20,7 +20,29 @@
             <div class="form-group"> 
                 <label name="slug">Slug:</label> 
                 <input id="slug" name="slug" class="form-control" minlength='5' maxlength='255' required value="{{ $post->slug }}"> 
-            </div>               
+            </div><div class="form-check"> 
+                <label name="categories">Categories:</label>    
+                <div class="row">
+                    @foreach($categories as $category)   
+                        <div class="col-md-4">
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="categories[]" type="checkbox" value="{{ $category->id }}" 
+                                {{ in_array($category->id,$post->categoryIds()->all()) ? "checked" : "" }}> 
+                                {{ $category->name }}                       
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>    
+            <div class="form-group"> 
+                <label name="tags">Tags:</label> 
+                <select id="tags" name="tags[]" class="form-control select2-multi" multiple="multiple">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>    
+
             <div class="form-group"> 
                 <label name="body">Post Body:</label> 
                 <textarea id="body" name="body" rows="10" class="form-control">{!! $post->body !!}</textarea> 
@@ -35,8 +57,11 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-<script type="text/javascript">
-    $(".select2-multi").select2();
+<script>
+$(document).ready(function() {
+    $('.select2-multi').select2();
+    $(".select2-multi").select2().val({!! json_encode($post->tagsIds()) !!}).trigger('change');
+});
 </script>
 
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
@@ -46,5 +71,11 @@ tinymce.init({
     plugins: "link code lists",
     menubar: false
 });
+
+// Temporary notification fix
+setTimeout(function(){ 
+    $(".mce-notification-warning").hide(); 
+    $(".mce-branding-powered-by").hide(); 
+},1000)
 </script>
 @stop

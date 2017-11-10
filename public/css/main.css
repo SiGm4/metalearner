@@ -1,13 +1,21 @@
 body{
-    font-family: 'Titillium Web', sans-serif;    
+    font-family: 'Roboto', sans-serif;
 }
 
 .btn-h1-spacing{
     margin-top:22px;
 }
 
+.form-check-label{
+    font-weight: normal;
+}
+
+.inline-form{
+    display:inline-block;
+}
+
 .footer {
-    display:block;
+    display:none;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -30,3 +38,4 @@ body{
     padding: 3px 20px;
     color:#333;
 }
+

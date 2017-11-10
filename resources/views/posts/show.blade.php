@@ -9,6 +9,11 @@
         <h4><a href="/posts/{{ $post->id }}">Change Me: {{ url('/blog')."/".$post->slug }} </a></h4>
         <p class="lead">{!! $post->body !!}</p>
         <hr>
+        <div class="tags">
+            @foreach($post->tags as $tag)
+                <span class="label label-default">{{ $tag->name }}</span>
+            @endforeach
+        </div>
     </div>
     <div class="col-md-4 well">
         <dl class="dl-horizontal">
@@ -18,6 +23,12 @@
         <dl class="dl-horizontal">
             <dt>Author</dt>
             <dd>{{ $post->author->name }}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>Categories</dt>
+            @foreach($post->categories as $category)
+                <dd>{{ $category->name }}</dd>
+            @endforeach
         </dl>
         <dl class="dl-horizontal">
             <dt>Created:</dt>

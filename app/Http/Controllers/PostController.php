@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\User;
+use App\Category;
+use App\Tag;
 use Session;
 
 class PostController extends Controller
@@ -35,8 +37,13 @@ class PostController extends Controller
     public function create()
     {
         $users = User::all();
-
-        return view('posts.create', ['users' => $users]);
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create', [
+            'users' => $users,
+            'tags' => $tags,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -47,6 +54,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        //dd($request);
         $request->validate(array(
             'title' => 'required|min:5|max:255',
             'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
@@ -64,6 +73,9 @@ class PostController extends Controller
         $post->author()->associate($author);
 
         $post->save();
+        
+        $post->categories()->sync($request->categories, false);
+        $post->tags()->sync($request->tags, false);
         
         Session::flash('success', "Blog Post was created successfully.");
         
@@ -95,7 +107,14 @@ class PostController extends Controller
     {
         $users = User::all();
         $post  = Post::find($id);
-        return view('posts.edit', ['users' => $users, 'post' => $post]);
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.edit', [
+            'users' => $users,
+            'tags' => $tags,
+            'categories' => $categories,
+            'post' => $post
+        ]);
     }
 
     /**
@@ -120,6 +139,18 @@ class PostController extends Controller
         $post->body  = $request->body;
 
         $post->save();
+
+        if (isset($request->categories)){
+            $post->categories()->sync($request->categories);
+        } else {
+            $post->categories()->sync(array());
+        }
+
+        if (isset($request->tags)){
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->sync(array());
+        }
         
         Session::flash('success', "Blog Post was edited successfully.");
         
@@ -135,6 +166,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        $post->categories()->detach();
+        $post->tags()->detach();
 
         $post->delete();
 
