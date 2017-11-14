@@ -39,6 +39,26 @@ body{
     margin-top:-22px;
 }
 
+.header { 
+    position: relative; 
+    width: 100%; /* for IE 6 */
+ }
+ 
+ .header-text { 
+    position: absolute; 
+    top: 25%; 
+    width: 100%; 
+ }
+ 
+ .header-text span { 
+    color: white;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 3.5vw; 
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.8);
+    padding: 25px; 
+ }
+
 .btn-h1-spacing{
     margin-top:22px;
 }
@@ -80,4 +100,3 @@ body{
     padding: 3px 20px;
     color:#333;
 }
-
