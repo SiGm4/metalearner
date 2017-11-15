@@ -43,7 +43,7 @@
                             </td>
                             <td>{{ $post->author->name }}</td>
                             <td>
-                                {{ join('/',$post->categoryNames()->all()) }}                                 
+                                {!! join(' / ',$post->categoriesWithLinks()) !!}
                             </td>
                             <td>{{ $post->created_at->diffForHumans() }}</td>
                             <td>

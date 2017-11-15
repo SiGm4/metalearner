@@ -30,6 +30,16 @@ class Post extends Model
         
     }
 
+    public function categoriesWithLinks(){
+        
+        $categLinks = [];
+        foreach($this->categories as $category){
+            $categLinks[] = "<a href='/categories/$category->id'>$category->name</a>";
+        }
+        return $categLinks;
+        
+    }
+
     public function tags(){
         
         return $this->belongsToMany('App\Tag','post_tag','post_id','tag_id');

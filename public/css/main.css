@@ -42,22 +42,49 @@ body{
 .header { 
     position: relative; 
     width: 100%; /* for IE 6 */
- }
+}
  
- .header-text { 
+.header-text { 
     position: absolute; 
     top: 25%; 
     width: 100%; 
- }
+}
  
- .header-text span { 
+.header-text span { 
     color: white;
     font-family: 'Titillium Web', sans-serif;
     font-size: 3.5vw; 
     background: rgb(0, 0, 0); /* fallback color */
     background: rgba(0, 0, 0, 0.8);
     padding: 25px; 
- }
+}
+
+.blog-title-line::after {
+    margin-left: 10px;
+}
+
+.blog-title-line::after {
+    content: ' ';
+    height: 4px;
+    background-color: #1f1f1f;
+    width: 100%;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    margin-top:-3px;
+}
+
+.blog-title-line {
+    overflow: hidden;
+    position: relative;
+}
+
+.blog-title {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    font-size: 26px;
+    text-transform: uppercase;
+}
 
 .btn-h1-spacing{
     margin-top:22px;
@@ -74,11 +101,23 @@ body{
 .featured_image{
     width:100%;
     height:auto;
+    transition: all .5s ease-in-out;
+}
+
+.featured_image_outer:hover{
+    transform: scale(1.05);
+}
+
+.featured_image_div{
+    overflow:hidden;
+}
+
+.abstract_div{
+    padding: 10px 20px 30px 20px;
 }
 
 .footer {
-    display:none;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: 60px;
@@ -99,4 +138,25 @@ body{
 #logoutBtn{
     padding: 3px 20px;
     color:#333;
+}
+
+.post{
+    background-color:#eee;
+    margin-bottom: 50px;
+}
+
+.abstract_div p{
+    color: #444;
+}
+
+.abstract_div h3{
+    margin-bottom: 20px;
+}
+.abstract_div h3 a{
+    color: #1f1f1f;
+}
+
+.abstract_div h3 a:hover{
+    color:#337ab7;
+    text-decoration: none;
 }
