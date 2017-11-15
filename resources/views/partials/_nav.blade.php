@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom">
+<nav class="navbar navbar-custom navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">
